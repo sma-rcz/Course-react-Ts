@@ -13,7 +13,7 @@ type JSXelement = () => JSX.Element;
 interface Route {
     to: string;
     path: string;
-    Component:LazyExoticComponent<JSXelement> | JSXelement;
+    Component:LazyExoticComponent<JSXelement> | JSXelement; //LazyExoticComponent<JSXelement> | JSXelement;
     name: string;
 }
 

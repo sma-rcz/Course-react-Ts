@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import { BrowserRouter, Navigate, NavLink, Route, Routes } from 'react-router-dom'
 import logo from '../logo.svg'
-import { routes } from './routes'
+import { routes } from './routes' //esta importa las rutas de la aplicacion modificadas para el lazy load como se necesiten cargar
 //import { Lroutes
 export const Navigation = () => {
     return (
