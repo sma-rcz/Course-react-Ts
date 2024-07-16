@@ -1,10 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
+//import logo from './logo.svg';
+import { Navigation } from './01-lazyload/router/Navigation';
 
 function App() {
   return (
     <>
-    <h1>App.tsx</h1>
+    <Navigation />
     </>
   );
 }
