@@ -18,19 +18,90 @@ code {
 .main-layout {
   display: flex;
   flex-direction: row;
-  
+
 }
 
-nav {
+
+.contenedor{
+  max-width: 120rem;
+  margin: 0 auto;
+  width: 90%;
+}
+
+
+.navegacion ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  
+
+}
+
+.navegacion  li {
+list-style: none;
+margin-bottom: 10px;
+}
+
+.navegacion li a {
+color: white;
+font-size: 1.2rem;
+text-decoration: none;
+}
+
+
+@media(min-width: 768px){
+  .navegacion ul {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: end;
+      gap: 2rem;
+      
+
+  }
+
+  .navegacion  li {
+    list-style: none;
+    margin-bottom: 10px;
+  }
+  
+  .navegacion li a {
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+  }
+
+
+}
+
+
+
+
+
+
+.row {
+  display: flex;
+  flex-direction: row; /* Cada fila se comporta como un contenedor flex en dirección de fila */
+  flex: 2; 
+}
+.row-1 {
+  flex: 1; /* Esta fila ocupará más espacio */
+}
+.row-2 {
+  flex:11; /* Esta fila ocupará más espacio */
+}
+
+
+.nav-Submenu {
   background-color: #363a45;
   height: 100vh;
-  margin-right: 15px;
   /*
   overflow-y: scroll;
   text-align: center;*/
   width: 250px;
 }
-nav ul {
+.nav-Submenu ul {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -38,12 +109,12 @@ nav ul {
   padding-left: 0;
 }
 
-nav li {
+.nav-Submenu li {
   list-style: none;
   margin-bottom: 10px;
 }
 
-nav li a {
+.nav-Submenu li a {
   color: white;
   font-size: 1.2rem;
   text-decoration: none;
@@ -52,4 +123,23 @@ nav li a {
 .nav-active {
   color: grey;
   transition: all .3s ease-out;
+}
+
+
+/*
+.nav-Submenu {
+  background-color: #363a45;
+  height: 10vh;
+  margin-right: 15px;
+  width: 100%;
+}
+.nav-Submenu ul {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-left: 0;
+}*/
+.text-center {
+  text-align: center;
 }

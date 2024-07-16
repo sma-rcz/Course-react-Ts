@@ -12,8 +12,9 @@ export const Navigation = () => {
 
 
             <div className='main-layout'>
+                <div className=' row row-1'>
 
-                <nav>
+                <nav className='nav-Submenu'>
                     <img src={logo} alt='React Logo' />
 
                     <ul>
@@ -49,6 +50,7 @@ export const Navigation = () => {
 
                     </ul>
                 </nav>
+                </div>
 
                 <Routes>
 
