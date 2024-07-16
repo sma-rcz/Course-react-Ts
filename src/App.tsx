@@ -1,6 +1,6 @@
 import React from 'react';
 //import logo from './logo.svg';
-import { Navigation } from './01-lazyload/router/Navigation';
+import { Navigation } from './routes/Navigation';
 
 function App() {
   return (
