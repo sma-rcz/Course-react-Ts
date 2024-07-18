@@ -3,7 +3,16 @@ import { ProductContext } from "./ProductCard";
 import NoImg from '../assets/no-image.jpg' // Ajusta la ruta según sea necesario
 import styles from '../styles/styles.module.css'
 // Componente que renderiza la imagen del producto desde una funcion  que recibe la url de la imagen
-export const ProductImage = ({ img = '' }) => {
+
+export interface ProductImageProps {
+  img?: string | undefined;
+  className?: string;
+}
+
+
+
+
+export const ProductImage = ({ img = '',className }:ProductImageProps ) => {
 
     const  {product  } = useContext(ProductContext);
     let imgToshow:string
@@ -20,6 +29,6 @@ export const ProductImage = ({ img = '' }) => {
   
   
   
-    return (<img className={styles.productImg} src={imgToshow }  alt='Coffee mug' width='200px' height='200px' />)
+    return (<img className={`${styles.productImg} ${className}`} src={imgToshow }  alt='Coffee mug' width='200px' height='200px' />)
   }
 

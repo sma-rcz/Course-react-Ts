@@ -1,7 +1,7 @@
-import { createContext, ReactElement, useContext } from 'react'
+import React, { createContext, ReactElement } from 'react'
 import styles from '../styles/styles.module.css'
 import { useProduct } from '../hooks/useProduct'
-import { ProductContextProps, Props } from '../interfaces/interfaces';
+import { Product, ProductContextProps} from '../interfaces/interfaces';
 
 
 
@@ -13,6 +13,13 @@ const { Provider } = ProductContext  // destructuring para obtener el provider
 
 
 
+export interface Props {
+  product: Product;
+  children?: ReactElement | ReactElement[];
+  className?: string;
+  style?:React.CSSProperties;
+
+}
 
 
 
@@ -20,7 +27,7 @@ const { Provider } = ProductContext  // destructuring para obtener el provider
 
 
 // Componente que renderiza la tarjeta del producto
-export const ProductCard = ({ children, product }: Props) => {
+export const ProductCard = ({ children, product,className ,style}: Props) => {
   const { counter, increseBy } = useProduct();
 
 
@@ -32,7 +39,9 @@ export const ProductCard = ({ children, product }: Props) => {
         increseBy,
         product
       }}>
-        <div className={styles.productCard}>
+        <div 
+        style={style}
+        className={`${styles.productCard} ${className}`}>
 
           {/* <span className={styles.productDescription}>{product.title}</span>*/}
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ProductButtons, ProductCard, ProductImage, ProductTitle } from '../components'
 //import NoImg  from '../assets/no-image.jpg' // Ajusta la ruta según sea necesario
-
+import '../styles/custom-styles.css'
 
 
 export const ShoppingPages = () => {
@@ -16,7 +16,7 @@ export const ShoppingPages = () => {
 
 
   return (
-    <div><h1>
+    <div  ><h1>
       Shopping Store
     </h1>
       <hr />
@@ -35,23 +35,46 @@ export const ShoppingPages = () => {
         
         */}
 
-        <ProductCard product={product}>
+        <ProductCard
+        className='bg-dark text-white'
+         product={product}>
 
-          <ProductCard.Image />
-          <ProductCard.Title />
-          <ProductCard.Buttons />
+          <ProductCard.Image className= 'custom-image' />
+          <ProductCard.Title className='text-bold' />
+          <ProductCard.Buttons className='custom-buttons' />
 
         </ProductCard>
 
         
-        <ProductCard product={product}>
+        <ProductCard
+        className='bg-dark text-white'
+         product={product}>
 
-          <ProductImage/>
-          <ProductTitle />
-          <ProductButtons/>
+          <ProductImage className= 'custom-image'/>
+          <ProductTitle  className='text-bold' />
+          <ProductButtons className='custom-buttons' />
 
         </ProductCard>  
       
+
+        <ProductCard
+          product={product}
+          style={{
+            backgroundColor: '#61DAFB',
+          }}
+        >
+
+          <ProductImage />
+          <ProductTitle style={{
+            color: 'black',
+            fontWeight: 'bold',
+          }} />
+          <ProductButtons style ={{
+            display: 'flex',
+            justifyContent: 'end',
+          }} />
+
+        </ProductCard>  
       </div>
     
 

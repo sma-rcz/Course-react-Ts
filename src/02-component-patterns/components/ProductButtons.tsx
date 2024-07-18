@@ -2,11 +2,19 @@ import { useContext } from "react";
 import { ProductContext } from "./ProductCard";
 import styles from '../styles/styles.module.css'
 
-export const ProductButtons = () => {
+interface ProductButtonsProps {
+  className?: string;
+  style?:React.CSSProperties;
+}
+
+
+export const ProductButtons = ({className ,style}:ProductButtonsProps) => {
   
     const {counter,increseBy} = useContext(ProductContext); // aqui se obtiene el estado del producto
     return (
-      <div className={styles.buttonsContainer}>
+      <div
+      style={style}
+      className={`${styles.buttonsContainer} ${className}`}>
         <button
           onClick={() => increseBy(-1)}
           className={styles.buttonMinus}>-</button>
