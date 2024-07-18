@@ -10,7 +10,7 @@ export const ShoppingPages = () => {
   const product = {
     id: '1',
     title: 'Coffee Mug Especial Edition',
-    img: coffeImg 
+    img: coffeImg
 
   }
 
@@ -21,10 +21,10 @@ export const ShoppingPages = () => {
     </h1>
       <hr />
       <div style={{
-        display:'flex',
-        flexDirection:'row',
-        flexWrap:'wrap',
-        gap:'5px',
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: '5px',
       }}>
 
         {/*Compooun Component Pattern    */}
@@ -35,48 +35,63 @@ export const ShoppingPages = () => {
         
         */}
 
+        {/*para  poder agregar estilos al componente 
+        se le asigna la propiedad className y se le asigna el estilo que se va a aplicar al componente.
+         //? Ademas para poder agregar estilos y clases al componente es necesario editar  el archivo de interfaces/interfaces.ts y tambien  el archivo index.ts en dado caso que ocupe argumentos en los estilos,
+         //?sin embargo,   agregar el tipo de la propiedad que se va a recibir en el componente
+        */}
         <ProductCard
-        className='bg-dark text-white'
-         product={product}>
+          className='bg-dark text-white'
+          product={product}>
 
-          <ProductCard.Image className= 'custom-image' />
+          <ProductCard.Image className='custom-image'
+            style={{
+              boxShadow: '10px 10px 10px rgba(0,0,0,0.2)',
+            }}
+          />
           <ProductCard.Title className='text-bold' />
           <ProductCard.Buttons className='custom-buttons' />
 
         </ProductCard>
 
-        
-        <ProductCard
-        className='bg-dark text-white'
-         product={product}>
 
-          <ProductImage className= 'custom-image'/>
-          <ProductTitle  className='text-bold' />
+        <ProductCard
+          className='bg-dark text-white'
+          product={product}>
+
+          <ProductImage className='custom-image'
+          style={{
+            boxShadow: '10px 10px 10px rgba(0,0,0,0.2)',
+          }}
+          />
+          <ProductTitle className='text-bold' />
           <ProductButtons className='custom-buttons' />
 
-        </ProductCard>  
-      
+        </ProductCard>
+
 
         <ProductCard
           product={product}
           style={{
-            backgroundColor: '#61DAFB',
+            backgroundColor: 'lightblue',
           }}
         >
 
-          <ProductImage />
+          <ProductImage style={{
+            boxShadow: '10px 10px 10px rgba(0,0,0,0.2)',
+          }} />
           <ProductTitle style={{
             color: 'black',
             fontWeight: 'bold',
           }} />
-          <ProductButtons style ={{
+          <ProductButtons style={{
             display: 'flex',
             justifyContent: 'end',
           }} />
 
-        </ProductCard>  
+        </ProductCard>
       </div>
-    
+
 
 
 

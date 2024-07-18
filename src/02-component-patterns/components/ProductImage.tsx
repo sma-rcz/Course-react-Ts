@@ -7,12 +7,13 @@ import styles from '../styles/styles.module.css'
 export interface ProductImageProps {
   img?: string | undefined;
   className?: string;
+  style?:React.CSSProperties;
 }
 
 
 
 
-export const ProductImage = ({ img = '',className }:ProductImageProps ) => {
+export const ProductImage = ({ img = '',className,style }:ProductImageProps ) => {
 
     const  {product  } = useContext(ProductContext);
     let imgToshow:string
@@ -29,6 +30,10 @@ export const ProductImage = ({ img = '',className }:ProductImageProps ) => {
   
   
   
-    return (<img className={`${styles.productImg} ${className}`} src={imgToshow }  alt='Coffee mug' width='200px' height='200px' />)
+    return (<img 
+      className={`${styles.productImg} ${className}`} src={imgToshow }  alt='Coffee mug' width='200px' height='200px'
+      style={style}
+      
+      />)
   }
 

@@ -16,8 +16,8 @@ const { Provider } = ProductContext  // destructuring para obtener el provider
 export interface Props {
   product: Product;
   children?: ReactElement | ReactElement[];
-  className?: string;
-  style?:React.CSSProperties;
+  className?: string; // se define el tipo de la propiedad para poder agrer stylos
+  style?:React.CSSProperties; // se necesita para poder agregar estilos al componente React.CSSProperties
 
 }
 

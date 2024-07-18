@@ -26,8 +26,8 @@ export interface ProductContextProps {
 }
 export interface ProductCardHOCprops {
     ({children,product,}:ProductCardProps ): JSX.Element,
-    Image: ( Props: ProductImageProps) => JSX.Element,
-    Title: ( Props: ProductTitleProps) => JSX.Element,
-    Buttons: ({className}:{className?:string}) => JSX.Element
+    Image: ( Props: ProductImageProps) => JSX.Element,  // aqui se le asigna el tipo de las propiedades que se van a recibir de los estilos en los argumentos
+    Title: ( Props: ProductTitleProps) => JSX.Element, // aqui se le asigna el tipo de las propiedades que se van a recibir de los estilos en los argumentos
+    Buttons: ({className}:{className?:string}) => JSX.Element // aqui se le asigna el tipo de las propiedades que se van a recibir de los estilos en los argumentos
 
 }
