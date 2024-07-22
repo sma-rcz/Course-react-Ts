@@ -25,7 +25,7 @@ export const useShoppingCart = () => {
   
   setshoppingCart( oldShoppingCart => {
 
-
+    /*
 
       const productIncart:ProductCart = oldShoppingCart[product.id] || {...product,count:0} // se crea una variable que almacena el producto que se encuentra en el carrito de compras o se crea un nuevo producto con un contador en 0
 
@@ -39,28 +39,30 @@ export const useShoppingCart = () => {
       }
       const { [product.id]:deletedProduct, ...newShoppingcart } = oldShoppingCart; // se crea una variable que almacena el producto eliminado del carrito de compras
       return newShoppingcart; // se retorna el nuevo carrito de compras sin el producto eliminado
-      /*
+  
+     
+      
 
       const newShoppingcart = {...oldShoppingCart}
       delete newShoppingcart[product.id]
-      return newShoppingcart;*/
+      return newShoppingcart;   */
       
 
     
-    // if(count === 0){// si el contador es igual a 0 se elimina el producto del carrito
+     if(count === 0){// si el contador es igual a 0 se elimina el producto del carrito
     // const newShoppingcart = {...oldShoppingCart}
-    /// delete newShoppingcart[product.id]
-    //  /*
-    //  const{ [product.id]:deletedProduct, ...newShoppingcart } = oldShoppingCart;
-    // console.log(deletedProduct);*/
-    //  return newShoppingcart;
+    // delete newShoppingcart[product.id]
+   
+      const{ [product.id]:deletedProduct, ...newShoppingcart } = oldShoppingCart;
+      console.log(deletedProduct);
+      return newShoppingcart;
 
-    //  }
+      }
 
-    //   return{
-    //   ...oldShoppingCart,// se copia el carrito de compras
-    //  [product.id]: {...product,count} // se agrega el producto al carrito de compras
-    //  }
+       return{
+       ...oldShoppingCart,// se copia el carrito de compras
+      [product.id]: {...product,count} // se agrega el producto al carrito de compras
+      }
 
 
 
