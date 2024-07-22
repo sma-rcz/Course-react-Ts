@@ -25,3 +25,10 @@
     background-color: rgb(54,58,69);
     border-color:none
 }
+
+.shopping-cart {
+    position: fixed;
+    top: 0;
+    right: 0;
+    
+}

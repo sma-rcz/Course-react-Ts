@@ -16,7 +16,7 @@ export { ProductTitle } from "./ProductTitle";
 export { ProductButtons } from "./ProductButtons";
 
 
-// aqui se exporta el componente ProductCard con los elementos que se van a exportar
+// aqui se exporta el componente ProductCard con los elementos que se van a exportar todo esto es para los hijos de ProductCard
 export const ProductCard:ProductCardHOCprops = Object.assign(ProductCardHOC, { // se le asigna a ProductCardHOC los elementos que se van a exportar
     Image: ProductImage,    
     Title: ProductTitle,

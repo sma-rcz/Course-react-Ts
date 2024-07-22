@@ -18,9 +18,9 @@ export const ProductTitle = ({ title,className,style }:ProductTitleProps ) => {
     if(title  === ''){
       title = product.title
     }*/
-   
+   //title ? title === ' ' : product.title
     
     return (<span 
       style={style}
-      className={`${styles.productDescription} ${className}`}>{title ? title === ' ' : product.title}</span>)
+      className={`${styles.productDescription} ${className}`}>{ title = title === '' ? product.title : title}</span>)
   }

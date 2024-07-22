@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+
 
 import { ProductTitleProps } from '../components/ProductTitle';
 import { ProductImageProps } from "../components/ProductImage";
@@ -31,3 +31,14 @@ export interface ProductCardHOCprops {
     Buttons: ({className}:{className?:string}) => JSX.Element // aqui se le asigna el tipo de las propiedades que se van a recibir de los estilos en los argumentos
 
 }
+
+export interface onChangeArgs {
+    product: Product,
+    count: number
+}
+
+
+ //aqui se extiende la interfaz de Product para agregar una propiedad counter
+ export interface ProductCart extends Product {
+    count: number
+  }

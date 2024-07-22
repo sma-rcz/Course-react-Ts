@@ -1,7 +1,7 @@
 import React, { createContext, ReactElement } from 'react'
 import styles from '../styles/styles.module.css'
 import { useProduct } from '../hooks/useProduct'
-import { Product, ProductContextProps} from '../interfaces/interfaces';
+import { onChangeArgs, Product, ProductContextProps} from '../interfaces/interfaces';
 
 
 
@@ -18,7 +18,8 @@ export interface Props {
   children?: ReactElement | ReactElement[];
   className?: string; // se define el tipo de la propiedad para poder agrer stylos
   style?:React.CSSProperties; // se necesita para poder agregar estilos al componente React.CSSProperties
-
+  onChange?: (args:onChangeArgs) => void; // se define el tipo de la propiedad para poder agrer stylos
+  value?:number;
 }
 
 
@@ -27,8 +28,15 @@ export interface Props {
 
 
 // Componente que renderiza la tarjeta del producto
-export const ProductCard = ({ children, product,className ,style}: Props) => {
-  const { counter, increseBy } = useProduct();
+export const ProductCard = ({ children, product,className ,style, onChange ,value}: Props) => {
+  const { counter, increseBy } = useProduct(
+    {
+      onChange,
+      product,
+      value
+   
+
+  });
 
 
   return (
