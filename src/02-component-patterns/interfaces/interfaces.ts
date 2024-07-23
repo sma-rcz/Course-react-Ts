@@ -20,8 +20,10 @@ interface ProductButtonsProps {
 
 export interface ProductContextProps {
     counter: number;
-    increseBy: (value: number) => void;
     product: Product;
+    maxCount?: number;
+
+    increseBy: (value: number) => void;
 
 }
 export interface ProductCardHOCprops {
@@ -41,4 +43,19 @@ export interface onChangeArgs {
  //aqui se extiende la interfaz de Product para agregar una propiedad counter
  export interface ProductCart extends Product {
     count: number
+  }
+
+  export interface InitialValues {
+    count?: number,
+    maxCount?: number
+  }
+
+  export interface ProductCardHadnlers {
+    count:number;
+    isMaxCountReached: boolean;
+    maxCount?:number;
+    product:Product;
+
+    increseBy: (value: number) => void;
+    reset: () => void;
   }

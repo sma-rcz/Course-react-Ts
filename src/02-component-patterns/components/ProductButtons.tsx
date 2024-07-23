@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import { ProductContext } from "./ProductCard";
 import styles from '../styles/styles.module.css'
 
@@ -7,15 +7,24 @@ interface ProductButtonsProps {
   style?:React.CSSProperties; // se necesita para poder agregar estilos al componente React.CSSProperties
 }
 
+
+
                           // se le asigna el tipo de las propiedades que se van a recibir de los estilos
 export const ProductButtons = ({className ,style}:ProductButtonsProps) => {
   
 
 
+  //Todo:MaxCount
+    const {counter,increseBy ,maxCount} = useContext(ProductContext); // aqui se obtiene el estado del producto
+  //Todo: isMaxReached = useCallback, dependencias [counter, maxCount]
+  //TRUE si el count  === maxCount
+  //FALSE si el count !== maxCount  
 
-    const {counter,increseBy} = useContext(ProductContext); // aqui se obtiene el estado del producto
-
-    
+  /*
+  const isMaxReached  = useMemo (() => counter === maxCount,[counter,maxCount] ); // se crea un memo para saber si el contador es igual al maximo*/
+  
+  const isMaxReached =  useCallback(
+    () => !!maxCount && counter === maxCount,[counter,maxCount] ); // se crea un memo para saber si el contador es igual al maximo
 
     return (
       <div
@@ -29,8 +38,9 @@ export const ProductButtons = ({className ,style}:ProductButtonsProps) => {
         <div className={styles.countLabel}>{counter}</div>
   
         <button
+          disabled = {isMaxReached()} // se desabilita el boton si el contador es igual al maximo
           onClick={() => increseBy(+1)}
-          className={styles.buttonAdd}>+</button>
+          className={`${styles.buttonAdd} ${isMaxReached() ? styles.disabled : '' } `} >+</button>
       </div>
       )
   

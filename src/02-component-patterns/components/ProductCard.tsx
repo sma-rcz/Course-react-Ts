@@ -1,7 +1,7 @@
 import React, { createContext, ReactElement } from 'react'
 import styles from '../styles/styles.module.css'
 import { useProduct } from '../hooks/useProduct'
-import { onChangeArgs, Product, ProductContextProps} from '../interfaces/interfaces';
+import { InitialValues, onChangeArgs, Product, ProductCardHadnlers, ProductContextProps } from '../interfaces/interfaces';
 
 
 
@@ -15,25 +15,27 @@ const { Provider } = ProductContext  // destructuring para obtener el provider
 
 export interface Props {
   product: Product;
-  children?: ReactElement | ReactElement[];
+  //children?: ReactElement | ReactElement[];
+  children: (args:ProductCardHadnlers) => JSX.Element;
   className?: string; // se define el tipo de la propiedad para poder agrer stylos
   style?:React.CSSProperties; // se necesita para poder agregar estilos al componente React.CSSProperties
   onChange?: (args:onChangeArgs) => void; // se define el tipo de la propiedad para poder agrer stylos
   value?:number;
+  initialValues?:InitialValues
 }
 
 
 
-
-
-
 // Componente que renderiza la tarjeta del producto
-export const ProductCard = ({ children, product,className ,style, onChange ,value}: Props) => {
-  const { counter, increseBy } = useProduct(
+export const ProductCard = ({ children, product,className ,style, onChange ,value,initialValues}: Props) => {
+  const { counter, increseBy, maxCount
+    , isMaxCountReached, reset} = useProduct(
     {
-      onChange,
-      product,
-      value
+      onChange, // se le pasa la funcion onChange al hook
+      product, // se le pasa el producto al hook
+      value,
+      initialValues,
+      
    
 
   });
@@ -45,7 +47,8 @@ export const ProductCard = ({ children, product,className ,style, onChange ,valu
 
         counter,
         increseBy,
-        product
+        product,
+        maxCount,
       }}>
         <div 
         style={style}
@@ -53,7 +56,14 @@ export const ProductCard = ({ children, product,className ,style, onChange ,valu
 
           {/* <span className={styles.productDescription}>{product.title}</span>*/}
 
-          {children}
+          {children({
+            count:counter,
+            isMaxCountReached,
+            maxCount:maxCount,
+            product,
+            increseBy,
+            reset
+          })}
 
 
 

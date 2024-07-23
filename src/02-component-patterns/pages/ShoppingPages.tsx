@@ -3,12 +3,11 @@ import { ProductButtons, ProductCard, ProductImage, ProductTitle } from '../comp
 //import NoImg  from '../assets/no-image.jpg' // Ajusta la ruta según sea necesario
 import '../styles/custom-styles.css'
 import { products } from '../data/products';
-import { useShoppingCart } from '../hooks/useShoppingCart';  //? se importa el hook que se creo para el carrito de compras
 
-
+const product = products[0];
 
 export const ShoppingPages = () => {
-  const { shoppingCart, onProductCountChange } = useShoppingCart(); // se llama al hook que se creo para el carrito de compras
+  
 
   return (
     <div  ><h1>
@@ -58,88 +57,50 @@ export const ShoppingPages = () => {
         {/*Compooun Component Pattern    */}
         {/*Aqui resive todos los elementos del padre al hijo */}
         {
-          products.map((product) => (
+     
             <ProductCard
               key={product.id}
               className='bg-dark text-white'
               product={product}
-              value={shoppingCart[product.id]?.count || 0}
-              //Object (shoppingCart)[product.id]?.count
-              onChange={onProductCountChange}  //esto es opcional si se quiere que el contador se actualice en tiempo real
-
+              initialValues = {{
+                count:6,
+                maxCount:10,
+              }}
             >
+              {
+                ({reset ,increseBy,count,maxCount,isMaxCountReached})=>(
+                  <>
+                  <ProductImage className='custom-image'
+                  style={{
+                    boxShadow: '10px 10px 10px rgba(0,0,0,0.2)',
+                  }}
+                />
+                <ProductTitle title={product.title} className='text-bold' />
+                <ProductButtons
+                  className='custom-buttons' />
+              
+              <button onClick={reset}>Reset</button> 
+              <button onClick={() => increseBy(-2)}>-2 </button>
+              {/*si no se llega al is MaxCount , ocultar el +2 */}
+              {!isMaxCountReached && <button onClick={() => increseBy(+2)}>+2</button>} 
+            
+              
 
-              <ProductImage className='custom-image'
-                style={{
-                  boxShadow: '10px 10px 10px rgba(0,0,0,0.2)',
-                }}
-              />
-              <ProductTitle title={product.title} className='text-bold' />
-              <ProductButtons
-                className='custom-buttons' />
+              <span>Count:{count} - Max{maxCount}</span>
+            
+                  
+                  </>
+                )
+                  
+                
+              }
+
+             
 
             </ProductCard>
-
-
-          ))
-
         }
 
-
       </div>
-
-
-
-      <div className='shopping-cart'>
-
-
-
-        <div>{
-
-
-          Object.values(shoppingCart).map((product) => (
-            <ProductCard
-              key={product.id}
-              className='bg-dark text-white'
-              product={product}
-              value={product.count}
-              onChange={onProductCountChange}
-              style={{
-                width: '100px',
-              }}
-            // onChange= { ()=> onProductCountChange() }
-            >
-
-              <ProductImage
-                className='custom-image'
-                style={{
-                  boxShadow: '10px 10px 10px rgba(0,0,0,0.2)',
-                  height: '100px',
-                }}
-              />
-              <ProductTitle title={`${product.count}`} />
-              {/**   <ProductTitle className='text-bold' /> */}
-              <ProductButtons
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                }}
-                className='custom-buttons' />
-
-            </ProductCard>
-
-
-          ))
-
-
-
-
-
-        }</div>
-
-      </div>
-
-
 
 
       {/*  // ? forma de  de importar las imagen desde el archivo en wepack *
@@ -148,11 +109,8 @@ export const ShoppingPages = () => {
           */}
 
 
-      <div>
-        <code>
+     
 
-        </code>
-      </div>
     </div>
 
 

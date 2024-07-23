@@ -65,3 +65,17 @@
 .buttonAdd:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
+
+ html body .disabled  {
+    background-color: rgba(184, 197, 182, 0.5) ;
+    cursor: not-allowed;
+    border-left: 1px solid white;
+    color: rgb(0, 0, 0);
+}
+
+html body .disabled:hover  {
+    background-color: rgba(184, 197, 182, 0.5) ;
+    cursor: not-allowed;
+    border-left: 1px solid white;
+    color: rgb(0, 0, 0);
+}
