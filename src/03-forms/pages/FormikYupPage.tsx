@@ -1,6 +1,6 @@
 import {  FormikErrors, useFormik } from 'formik' // import useFormik hook
 import '../styles/styles.css' // import styles.css files
-
+import * as Yup from 'yup' // import yup for validation
 
 interface FormValues { // create interface for form values
     firstName: string;
@@ -14,28 +14,7 @@ interface FormValues { // create interface for form values
 export const FormikYupPage = () => {
 
 
-    const validate = ({ firstName, lastName, email }: FormValues) => {
-        const errores: FormikErrors<FormValues> = {}
-        if (!firstName) {
-            errores.firstName = 'First name is required'
-
-        } else if (firstName.trim().length <= 10) {
-            errores.firstName = 'must be more than 10 characters or less'
-        }
-
-        if (!lastName) {
-            errores.lastName = 'Last name is required'
-        } else if (lastName.length >= 15) {
-            errores.lastName = 'must be more than 15 characters'
-        }
-        if (!email) {
-            errores.email = 'email is required'
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
-            errores.email = 'Invalid email address'
-        }
-
-        return errores;
-    }
+    
 
     //hadleChange es para manejar el cambio de los inputs
     //values es para manejar los valores de los inputs
@@ -43,7 +22,8 @@ export const FormikYupPage = () => {
     //errors es para manejar los errores de los inputs 
     //touched es un meotod formik para saber si se ha tocado el input
     //handleBlur es para manejar el blur de los inputs osea cuando se sale del input o entra
-    const { handleChange, values, handleSubmit, errors, touched, handleBlur, isValid, dirty } = useFormik({ //isValid es para saber si el formulario es valido y dirty es para saber si el formulario ha sido tocado
+    const {  handleSubmit, errors,
+         touched, isValid, dirty ,getFieldProps } = useFormik({ //isValid es para saber si el formulario es valido y dirty es para saber si el formulario ha sido tocado
         initialValues: {
             firstName: '',
             lastName: '',
@@ -52,7 +32,19 @@ export const FormikYupPage = () => {
         onSubmit(values) {
             console.log(values)
         },
-        validate
+        validationSchema:Yup.object({
+            firstName:Yup.string()
+            .max(15 , 'debe de tener 15 caracteres o menos')
+            .required('el firstName es requerido'),
+            lastName:Yup.string()
+            .max(20 , 'debe de tener 20 caracteres o menos')
+            .required('el lastName es requerido'),
+            email:Yup.string()
+            .email('email invalido')
+            .required('El correo electronico es requerido')
+
+        })
+       
 
     })
     return (
@@ -62,30 +54,23 @@ export const FormikYupPage = () => {
                 <label htmlFor='firstName'>First Name</label>
                 <input type='text'
                     id='firstName'
-                    name='firstName'
-                    onChange={handleChange}  //este  metodo de formik es para manejar el cambio de los inputs
-                    onBlur={handleBlur} //este metodo de formik es para manejar el blur de los inputs osea cuando se sale del input o entra
-                    value={values.firstName}
+                    
+                    {...getFieldProps('firstName')} //getfieldprops es un metodo de formik para obtener los props de los inputs  osea los eventos , los valores y metodos de los inputs
+                   
                 />
                 {touched.firstName && errors.firstName && <span>{errors.firstName}</span>}
 
                 <label htmlFor='lastName'>Last Name</label>
                 <input type='text'
                     id='lastName'
-                    name='lastName'
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.lastName}
+                    {...getFieldProps('lastName')}
                 />
                 {touched.lastName && errors.lastName && <span>{errors.lastName}</span>}
 
                 <label htmlFor='email'>Email</label>
                 <input type='email'
                     id='email'
-                    name='email'
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={values.email}
+                    {...getFieldProps('email')}
                 />
                 {touched.email && errors.email && <span>{errors.email}</span>}
 
