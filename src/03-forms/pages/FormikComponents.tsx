@@ -28,8 +28,9 @@ export const FormikComponents = () => {
                 jobType: '',
 
             }}
-                onSubmit={(values) => {  //este es el evento que se dispara cuando se envia el formulario
+                onSubmit={(values, {resetForm}) => {  //este es el evento que se dispara cuando se envia el formulario
                     console.log(values);
+                    resetForm(); //este metodo se utiliza para resetear el formulario despues de que se envia
                 }}
                 validationSchema={Yup.object({ // aqui se define el esquema de validacion de los campos que se van a validar
                     firstName: Yup.string()

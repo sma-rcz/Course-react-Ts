@@ -1,4 +1,4 @@
-import { useField, Field, ErrorMessage } from 'formik';
+import { useField,ErrorMessage } from 'formik';
 import React from 'react'
 
 
@@ -18,7 +18,7 @@ export const MyTextInputs = ({ label, ...props }: Props) => { //aqui pasamos el 
     return (
         <>
         <label htmlFor={props.id || props.name}>{label}</label>
-        <input className='text-input' type='text' {...field} {...props}/>
+        <input id={props.id || props.name}   className='text-input' type='text' {...field} {...props}/>
         <ErrorMessage name={props.name} component='span' className='cutom-span-erorr-class' />
 
         {/*{
